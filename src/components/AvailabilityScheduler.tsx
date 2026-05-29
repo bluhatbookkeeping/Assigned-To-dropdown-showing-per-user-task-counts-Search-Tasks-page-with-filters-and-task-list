@@ -55,7 +55,7 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
             <button
               onClick={onBack}
               className="mr-4 p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-600">
-
+              
               <ArrowLeft className="w-5 h-5" />
             </button>
             <div>
@@ -70,7 +70,7 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
           <button
             onClick={() => setIsModalOpen(true)}
             className="bg-[#6a5acd] hover:bg-[#5a4abd] text-[#ffd700] px-4 py-2 rounded text-sm font-bold flex items-center shadow-sm transition-colors">
-
+            
             <Plus className="w-4 h-4 mr-2" />
             Add Schedule Entry
           </button>
@@ -86,7 +86,7 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-purple-500 focus:outline-none w-64" />
-
+            
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
                   <td
                   colSpan={6}
                   className="px-6 py-8 text-center text-gray-500">
-
+                  
                     No availability entries found. Click "Add Schedule Entry" to
                     create one.
                   </td>
@@ -135,7 +135,7 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
                   <tr
                     key={entry.id}
                     className="hover:bg-gray-50 transition-colors">
-
+                    
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 font-bold text-xs mr-3">
@@ -158,7 +158,7 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span
                         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getReasonColor(entry.reason)}`}>
-
+                        
                           {entry.reason}
                         </span>
                       </td>
@@ -184,7 +184,7 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
                         <button
                         onClick={() => handleDeleteEntry(entry.id)}
                         className="text-gray-400 hover:text-red-600">
-
+                        
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </td>
@@ -201,7 +201,7 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSave={handleAddEntry} />
-
+      
     </div>);
 
 }

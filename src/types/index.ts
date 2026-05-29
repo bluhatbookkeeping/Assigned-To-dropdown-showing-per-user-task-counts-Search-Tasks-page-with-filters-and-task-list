@@ -5,6 +5,8 @@ export interface TeamMember {
   status: 'Available' | 'Out of Office';
 }
 
+export type SlaStatus = 'On Track' | 'At Risk' | 'Breached';
+
 export interface Task {
   id: string;
   requestType: string;
@@ -18,6 +20,9 @@ export interface Task {
   taskStatus: string;
   lastModifiedDate: string;
   assignedTo: string;
+  workflow: 'MBA' | 'CSA' | 'QA';
+  slaDeadline: string; // ISO date string
+  slaStatus: SlaStatus;
 }
 
 export interface AvailabilityEntry {
@@ -30,4 +35,17 @@ export interface AvailabilityEntry {
   notes?: string;
 }
 
-export type ViewState = 'dashboard' | 'workload' | 'availability';
+export interface SlaConfig {
+  workflow: 'MBA' | 'CSA' | 'QA';
+  minDays: number; // Target/Warning threshold
+  maxDays: number; // Breach threshold
+  description?: string;
+}
+
+export type ViewState =
+'dashboard' |
+'workload' |
+'availability' |
+'sla-dashboard' |
+'sla-config' |
+'member-report';

@@ -1,7 +1,71 @@
-/* URL IMPORTS (SUCH AS FONT IMPORTS) SHOULD BE KEPT ABOVE TAILWIND IMPORTS - DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
 
-/* PLEASE NOTE: THESE TAILWIND IMPORTS SHOULD NEVER BE DELETED - DO NOT DELETE THIS COMMENT */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-/* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL - DO NOT DELETE THIS COMMENT */
+
+:root {
+  --primary: #850F89;
+  --primary-dark: #6a0c6e;
+  --success: #1cc88a;
+  --warning: #f6c23e;
+  --danger: #e74a3b;
+  --secondary: #858796;
+  --dark: #5a5c69;
+  --light: #f8f9fc;
+}
+body {
+  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8f9fc;
+  color: #5a5c69;
+}
+.btn-primary {
+  background-color: #850F89;
+  color: white;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 0.25rem;
+  font-size: 0.78rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  display: inline-flex;
+  align-items: center;
+}
+.btn-primary:hover { background-color: #6a0c6e; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-secondary {
+  background-color: #5a5c69;
+  color: white;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 0.25rem;
+  font-size: 0.78rem;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+.btn-secondary:hover { background-color: #4a4c57; }
+.wfq-table { width: 100%; border-collapse: collapse; }
+.wfq-table th {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5a5c69;
+  background-color: #f2f2f5;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 2px solid #d1d3e2;
+  text-align: left;
+}
+.wfq-table td {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.78rem;
+  border-bottom: 1px solid #e3e6f0;
+  color: #5a5c69;
+}
+.wfq-table tbody tr:nth-child(even) td { background-color: #f8f9fc; }
+.wfq-table tbody tr:hover td { background-color: #eef0fb; }
+.wfq-link { color: #850F89; font-weight: 600; text-decoration: none; }
+.wfq-link:hover { text-decoration: underline; }

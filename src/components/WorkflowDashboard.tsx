@@ -32,7 +32,7 @@ export function WorkflowDashboard({
         <button
           onClick={onNavigateToWorkload}
           className="bg-white border-2 border-[#6a5acd] text-[#6a5acd] hover:bg-[#f0f0ff] px-4 py-1.5 rounded text-sm font-bold flex items-center shadow-sm transition-colors uppercase tracking-wide relative group">
-
+          
           <Users className="w-4 h-4 mr-2" />
           Team Workload
           <span className="absolute -top-1 -right-1 flex h-3 w-3">

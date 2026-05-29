@@ -58,7 +58,7 @@ export function AddAvailabilityModal({
                 value={userId}
                 onChange={(e) => setUserId(e.target.value)}
                 className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-purple-500 focus:outline-none">
-
+                
                 <option value="">- Select Team Member -</option>
                 {mockTeamMembers.map((member) =>
                 <option key={member.id} value={member.id}>
@@ -82,7 +82,7 @@ export function AddAvailabilityModal({
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
                   className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-purple-500 focus:outline-none" />
-
+                
               </div>
             </div>
             <div>
@@ -97,7 +97,7 @@ export function AddAvailabilityModal({
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
                   className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-purple-500 focus:outline-none" />
-
+                
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ export function AddAvailabilityModal({
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-purple-500 focus:outline-none">
-
+              
               <option>Vacation</option>
               <option>Sick Leave</option>
               <option>Training</option>
@@ -128,7 +128,7 @@ export function AddAvailabilityModal({
               rows={3}
               className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-purple-500 focus:outline-none"
               placeholder="Additional details..." />
-
+            
           </div>
 
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-100">
@@ -136,13 +136,13 @@ export function AddAvailabilityModal({
               type="button"
               onClick={onClose}
               className="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded border border-gray-300">
-
+              
               Cancel
             </button>
             <button
               type="submit"
               className="px-4 py-2 text-sm font-bold text-[#ffd700] bg-[#6a5acd] hover:bg-[#5a4abd] rounded">
-
+              
               Save Schedule
             </button>
           </div>

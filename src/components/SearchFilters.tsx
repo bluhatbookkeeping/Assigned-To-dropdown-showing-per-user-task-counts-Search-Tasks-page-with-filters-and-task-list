@@ -66,7 +66,7 @@ export function SearchFilters() {
             type="text"
             placeholder="- Select Date -"
             className="w-full h-8 px-2 text-black text-sm bg-white rounded-sm border border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500" />
-
+          
         </div>
 
         <div className="space-y-1">
@@ -101,7 +101,7 @@ export function SearchFilters() {
               type="text"
               placeholder="- Select Date -"
               className="flex-1 h-7 px-2 text-black text-xs bg-white rounded-sm border border-gray-300" />
-
+            
           </div>
           <div className="flex items-center space-x-2">
             <span className="text-xs w-8 text-right">To:</span>
@@ -109,7 +109,7 @@ export function SearchFilters() {
               type="text"
               placeholder="- Select Date -"
               className="flex-1 h-7 px-2 text-black text-xs bg-white rounded-sm border border-gray-300" />
-
+            
           </div>
         </div>
 
@@ -122,7 +122,7 @@ export function SearchFilters() {
             type="text"
             placeholder="Enter Event ID/Service Member DOD ID"
             className="w-full h-8 px-2 text-black text-sm bg-white rounded-sm border border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500" />
-
+          
         </div>
       </div>
 
