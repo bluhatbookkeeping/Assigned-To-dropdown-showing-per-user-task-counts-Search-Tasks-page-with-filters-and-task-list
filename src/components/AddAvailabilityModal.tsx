@@ -1,28 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, Calendar, User } from 'lucide-react';
-import { TeamMember } from '../types';
+import { AvailabilityEntry } from '../types';
 import { mockTeamMembers } from '../data/mockData';
 interface AddAvailabilityModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (data: any) => void;
+  editEntry?: AvailabilityEntry | null;
 }
 export function AddAvailabilityModal({
   isOpen,
   onClose,
-  onSave
+  onSave,
+  editEntry
 }: AddAvailabilityModalProps) {
+  const isEditMode = !!editEntry;
   const [userId, setUserId] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [reason, setReason] = useState('Vacation');
   const [notes, setNotes] = useState('');
+  // Sync form state when entering edit mode or opening fresh
+  useEffect(() => {
+    if (isOpen) {
+      if (editEntry) {
+        setUserId(editEntry.userId);
+        setStartDate(editEntry.startDate);
+        setEndDate(editEntry.endDate);
+        setReason(editEntry.reason);
+        setNotes(editEntry.notes || '');
+      } else {
+        setUserId('');
+        setStartDate('');
+        setEndDate('');
+        setReason('Vacation');
+        setNotes('');
+      }
+    }
+  }, [isOpen, editEntry]);
   if (!isOpen) return null;
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const user = mockTeamMembers.find((m) => m.id === userId);
     if (!user) return;
     onSave({
+      ...(editEntry ?
+      {
+        id: editEntry.id
+      } :
+      {}),
       userId,
       username: user.username,
       startDate,
@@ -38,7 +64,7 @@ export function AddAvailabilityModal({
         {/* Header */}
         <div className="bg-[#1a1a40] px-6 py-4 flex justify-between items-center">
           <h3 className="text-white font-bold text-lg">
-            Add Availability Entry
+            {isEditMode ? 'Edit Availability Entry' : 'Add Availability Entry'}
           </h3>
           <button onClick={onClose} className="text-gray-400 hover:text-white">
             <X className="w-5 h-5" />
@@ -143,7 +169,7 @@ export function AddAvailabilityModal({
               type="submit"
               className="px-4 py-2 text-sm font-bold text-[#ffd700] bg-[#6a5acd] hover:bg-[#5a4abd] rounded">
               
-              Save Schedule
+              {isEditMode ? 'Save Changes' : 'Save Schedule'}
             </button>
           </div>
         </form>

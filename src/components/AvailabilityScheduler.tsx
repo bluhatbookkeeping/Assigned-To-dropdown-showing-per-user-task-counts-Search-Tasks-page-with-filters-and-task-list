@@ -3,23 +3,58 @@ import { ArrowLeft, Plus, Calendar, Trash2, Edit2, Search } from 'lucide-react';
 import { mockAvailability } from '../data/mockData';
 import { AvailabilityEntry } from '../types';
 import { AddAvailabilityModal } from './AddAvailabilityModal';
+import { DeleteAvailabilityModal } from './DeleteAvailabilityModal';
 interface AvailabilitySchedulerProps {
   onBack: () => void;
 }
 export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
   const [entries, setEntries] = useState<AvailabilityEntry[]>(mockAvailability);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingEntry, setEditingEntry] = useState<AvailabilityEntry | null>(
+    null
+  );
+  const [deletingEntry, setDeletingEntry] = useState<AvailabilityEntry | null>(
+    null
+  );
   const [searchTerm, setSearchTerm] = useState('');
-  const handleAddEntry = (newEntry: any) => {
-    const entry: AvailabilityEntry = {
-      id: Math.random().toString(36).substr(2, 9),
-      ...newEntry
-    };
-    setEntries([...entries, entry]);
+  const handleSaveEntry = (data: any) => {
+    if (data.id) {
+      // Edit mode — update existing entry
+      setEntries(
+        entries.map((e) =>
+        e.id === data.id ?
+        {
+          ...e,
+          ...data
+        } :
+        e
+        )
+      );
+    } else {
+      // Add mode — create new entry
+      const entry: AvailabilityEntry = {
+        id: Math.random().toString(36).substr(2, 9),
+        ...data
+      };
+      setEntries([...entries, entry]);
+    }
   };
-  const handleDeleteEntry = (id: string) => {
-    if (confirm('Are you sure you want to remove this schedule entry?')) {
-      setEntries(entries.filter((e) => e.id !== id));
+  const handleOpenAdd = () => {
+    setEditingEntry(null);
+    setIsModalOpen(true);
+  };
+  const handleOpenEdit = (entry: AvailabilityEntry) => {
+    setEditingEntry(entry);
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingEntry(null);
+  };
+  const handleConfirmDelete = () => {
+    if (deletingEntry) {
+      setEntries(entries.filter((e) => e.id !== deletingEntry.id));
+      setDeletingEntry(null);
     }
   };
   const filteredEntries = entries.
@@ -68,7 +103,7 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
             </div>
           </div>
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleOpenAdd}
             className="bg-[#6a5acd] hover:bg-[#5a4abd] text-[#ffd700] px-4 py-2 rounded text-sm font-bold flex items-center shadow-sm transition-colors">
             
             <Plus className="w-4 h-4 mr-2" />
@@ -178,12 +213,17 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
                         {entry.notes || '-'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button className="text-gray-400 hover:text-blue-600 mr-3">
+                        <button
+                        onClick={() => handleOpenEdit(entry)}
+                        className="text-gray-400 hover:text-blue-600 mr-3"
+                        title="Edit entry">
+                        
                           <Edit2 className="w-4 h-4" />
                         </button>
                         <button
-                        onClick={() => handleDeleteEntry(entry.id)}
-                        className="text-gray-400 hover:text-red-600">
+                        onClick={() => setDeletingEntry(entry)}
+                        className="text-gray-400 hover:text-red-600"
+                        title="Delete entry">
                         
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -199,8 +239,16 @@ export function AvailabilityScheduler({ onBack }: AvailabilitySchedulerProps) {
 
       <AddAvailabilityModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSave={handleAddEntry} />
+        onClose={handleCloseModal}
+        onSave={handleSaveEntry}
+        editEntry={editingEntry} />
+      
+
+      <DeleteAvailabilityModal
+        isOpen={!!deletingEntry}
+        entry={deletingEntry}
+        onClose={() => setDeletingEntry(null)}
+        onConfirm={handleConfirmDelete} />
       
     </div>);
 
